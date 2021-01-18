@@ -25,7 +25,7 @@ class SampledField(Field):
         if isinstance(other_field, SampledField) and other_field.sample_points is self.sample_points:
             return self
         elif isinstance(other_field, Domain):
-            return self._grid_sample(other_field.box, other_field.resolution, 1)
+            return self._grid_sample(other_field.box, other_field.resolution, None)
         elif isinstance(other_field, CenteredGrid):
             return self._grid_sample(other_field.box, other_field.resolution, other_field._batch_size)
         elif isinstance(other_field, StaggeredGrid):

@@ -206,9 +206,9 @@ def replicate_pad(value, pad_width, math):
         pad_lower, pad_upper = pad_width[dim]
         if pad_lower == 0 and pad_upper == 0:
             continue  # Nothing to pad
-        bottom_row = value[(slice(None),) + tuple([slice(1) if d == dim else slice(None) for d in dims]) + (slice(None),)]
-        top_row = value[(slice(None),) + tuple([slice(-1, None) if d == dim else slice(None) for d in dims]) + (slice(None),)]
-        value = math.concat([bottom_row] * pad_lower + [value] + [top_row] * pad_upper)
+        bottom_row = value[tuple([slice(1) if d == dim else slice(None) for d in dims])]
+        top_row = value[tuple([slice(-1, None) if d == dim else slice(None) for d in dims])]
+        value = math.concat([bottom_row] * pad_lower + [value] + [top_row] * pad_upper, axis=dim)
     return value
 
 

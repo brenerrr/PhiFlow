@@ -130,7 +130,6 @@ class Domain(struct.Struct):
         return StaggeredGrid(grids, age=age, box=self.box, name=name, batch_size=batch_size, extrapolation=extrapolation, flags=(), content_type=struct.Struct.shape)
 
     def centered_grid(self, data, components=1, dtype=None, name=None, batch_size=None, extrapolation=None):
-        warnings.warn("Domain.centered_shape and Domain.centered_grid are deprecated. Use CenteredGrid.sample() instead.", DeprecationWarning)
         from phi.physics.field import CenteredGrid
         if callable(data):  # data is an initializer
             shape = self.centered_shape(components, batch_size=batch_size, name=name, extrapolation=extrapolation, age=())
