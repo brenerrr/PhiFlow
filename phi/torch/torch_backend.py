@@ -50,11 +50,12 @@ class TorchBackend(Backend):
     def equal(self, x, y):
         return x == y
 
-    def random_uniform(self, shape, low=0, high=1):
+    def random_uniform(self, shape, low=0, high=1, seed=None):
+        assert seed is None, "seed not supported"
         return torch.rand(size=shape, dtype=self.precision_dtype) * (high - low) + low
 
     def random_normal(self, shape, seed=None):
-        assert seed is None
+        assert seed is None, "seed not supported"
         return torch.randn(size=shape, dtype=self.precision_dtype)
 
     def stack(self, values, axis=0):

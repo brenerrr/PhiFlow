@@ -68,11 +68,11 @@ class DynamicBackend(Backend):
     def equal(self, x, y):
         return self.choose_backend([x, y]).equal(x, y)
 
-    def random_uniform(self, shape, low=0, high=1):
-        return self.choose_backend(shape).random_uniform(shape, low=low, high=high)
+    def random_uniform(self, shape, low=0, high=1, seed=None):
+        return self.choose_backend(shape).random_uniform(shape, low=low, high=high, seed=seed)
 
     def random_normal(self, shape, seed=None):
-        return self.choose_backend(shape).random_normal(shape)
+        return self.choose_backend(shape).random_normal(shape, seed=seed)
 
     def stack(self, values, axis=0):
         return self.choose_backend(values).stack(values, axis)
