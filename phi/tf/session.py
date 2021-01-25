@@ -28,7 +28,9 @@ class Session(object):
             self._session.run(tf.global_variables_initializer())
             self.saver = tf.train.Saver(max_to_keep=100, allow_empty=True)
 
-    def new_session(self):
+    def new_session(self, delete_old=True):
+        if delete_old:
+            self._session.close()
         self._session = tf.Session(graph=self.graph)
         self.initialize_variables()
 
